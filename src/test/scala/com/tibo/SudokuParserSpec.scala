@@ -25,7 +25,7 @@ class SudokuParserSpec extends org.specs2.mutable.Specification {
         Seq(None,None,None,None,None,None,Some(8),None,None)
       )
 
-      parsed.cells must_== expected
+      parsed.rows must_== expected
     }
   }
 }
