@@ -1,5 +1,7 @@
 package com.tibo
 
+import com.tibo.util.FileReader
+
 import scala.io.Source
 
 /**
@@ -7,9 +9,10 @@ import scala.io.Source
   */
 
 class SudokuParserSpec extends org.specs2.mutable.Specification {
+
   "Parser" >> {
     "parse a valid board" >> {
-      val parsed: Seq[Seq[Option[Int]]] = SudokuParser.parse(Source.fromFile("/Users/tibo.delor/SudokuSolver/src/test/resources/Sudoku1_Basic.psv"))
+      val parsed: Sudoku = SudokuParser.parse(FileReader.read("/Sudoku1_Basic.psv"))
       val expected: Seq[Seq[Option[Int]]] = Seq(
         Seq(None,None,Some(8),None,None,None,None,None,None),
         Seq(Some(3),None,Some(7),None,Some(4),None,Some(2),None,Some(5)),
@@ -22,7 +25,7 @@ class SudokuParserSpec extends org.specs2.mutable.Specification {
         Seq(None,None,None,None,None,None,Some(8),None,None)
       )
 
-      parsed must_== expected
+      parsed.cells must_== expected
     }
   }
 }

@@ -8,12 +8,12 @@ import scala.io.{BufferedSource, Source}
   */
 object SudokuParser {
 
-  def parse(file:BufferedSource): Seq[Seq[Option[Int]]] ={
-    file.getLines().toSeq.map(_.replace("|","").replace(" ","").map(c => {
+  def parse(file:BufferedSource): Sudoku ={
+    Sudoku(file.getLines().toSeq.map(_.replace("|","").replace(" ","").map(c => {
       if(c=='.') None
       else if(c.isDigit && c!='0') Some(c.asDigit)
       else throw new RuntimeException(s"INvalid output : $c")
-    }))
+    })))
   }
 
 
